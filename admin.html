@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Management System - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🎓 School Management System</h1>
+                <p>Admin Dashboard</p>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs --> 
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+            <button class="tab-btn" data-tab="students">Students</button>
+            <button class="tab-btn" data-tab="teachers">Teachers</button>
+            <button class="tab-btn" data-tab="classes">Classes</button>
+            <button class="tab-btn" data-tab="subjects">Subjects</button>
+            <button class="tab-btn" data-tab="grades">Grades</button>
+            <button class="tab-btn" data-tab="attendance">Attendance</button>
+            <button class="tab-btn" data-tab="fees">Fees</button>
+        </nav>
+
+        <!-- Content Area -->
+        <main class="content">
+
+            <!-- Dashboard Tab -->
+            <section id="dashboard-tab" class="tab-content active">
+                <h2>Dashboard Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Students</h3>
+                        <p class="stat-number" id="stat-students">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Teachers</h3>
+                        <p class="stat-number" id="stat-teachers">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Classes</h3>
+                        <p class="stat-number" id="stat-classes">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Subjects</h3>
+                        <p class="stat-number" id="stat-subjects">0</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Students Tab -->
+            <section id="students-tab" class="tab-content">
+                <h2>Student Management</h2>
+                
+                <div class="form-section">
+                    <h3>Add New Student</h3>
+                    <form id="studentForm" class="form">
+                        <div class="form-row">
+                            <input type="text" id="studentName" placeholder="Full Name" required>
+                            <input type="email" id="studentEmail" placeholder="Email">
+                            <input type="tel" id="studentPhone" placeholder="Phone">
+                        </div>
+                        <div class="form-row">
+                            <input type="date" id="studentDOB" placeholder="Date of Birth">
+                            <select id="studentClass">
+                                <option value="">Select Class</option>
+                            </select>
+                            <select id="studentGender">
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <textarea id="studentAddress" placeholder="Address" rows="2"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Student</button>
+                    </form>
+                </div>
+
+                <div class="table-section">
+                    <h3>Student List</h3>
+                    <input type="text" id="studentSearch" placeholder="Search students..." class="search-box">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Class</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsList">
+                            <tr><td colspan="7">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Teachers Tab -->
+            <section id="teachers-tab" class="tab-content">
+                <h2>Teacher Management</h2>
+                
+                <div class="form-section">
+                    <h3>Add New Teacher</h3>
+                    <form id="teacherForm" class="form">
+                        <div class="form-row">
+                            <input type="text" id="teacherName" placeholder="Full Name" required>
+                            <input type="email" id="teacherEmail" placeholder="Email">
+                            <input type="tel" id="teacherPhone" placeholder="Phone">
+                        </div>
+                        <div class="form-row">
+                            <input type="text" id="teacherQualification" placeholder="Qualification">
+                            <input type="text" id="teacherSpecialization" placeholder="Specialization">
+                            <input type="date" id="teacherHireDate" placeholder="Hire Date">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Teacher</button>
+                    </form>
+                </div>
+
+                <div class="table-section">
+                    <h3>Teacher List</h3>
+                    <input type="text" id="teacherSearch" placeholder="Search teachers..." class="search-box">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Specialization</th>
+                                <th>Qualification</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teachersList">
+                            <tr><td colspan="7">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Classes Tab -->
+            <section id="classes-tab" class="tab-content">
+                <h2>Class Management</h2>
+                
+                <div class="form-section">
+                    <h3>Add New Class</h3>
+                    <form id="classForm" class="form">
+                        <div class="form-row">
+                            <input type="text" id="className" placeholder="Class Name (e.g., Class A-1)" required>
+                            <select id="classLevel">
+                                <option value="">Select Level</option>
+                                <option value="Beginner">Beginner</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Advanced">Advanced</option>
+                            </select>
+                            <select id="classTeacher">
+                                <option value="">Select Teacher</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <input type="number" id="classCapacity" placeholder="Class Capacity" min="1">
+                            <textarea id="classDescription" placeholder="Description" rows="2"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Class</button>
+                    </form>
+                </div>
+
+                <div class="table-section">
+                    <h3>Class List</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Level</th>
+                                <th>Teacher</th>
+                                <th>Capacity</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="classesList">
+                            <tr><td colspan="6">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Subjects Tab -->
+            <section id="subjects-tab" class="tab-content">
+                <h2>Subject Management</h2>
+                
+                <div class="form-section">
+                    <h3>Add New Subject</h3>
+                    <form id="subjectForm" class="form">
+                        <div class="form-row">
+                            <input type="text" id="subjectName" placeholder="Subject Name" required>
+                            <input type="text" id="subjectCode" placeholder="Subject Code" required>
+                            <textarea id="subjectDescription" placeholder="Description" rows="2"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Subject</button>
+                    </form>
+                </div>
+
+                <div class="table-section">
+                    <h3>Subject List</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Code</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody id="subjectsList">
+                            <tr><td colspan="4">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Grades Tab -->
+            <section id="grades-tab" class="tab-content">
+                <h2>Grade Management</h2>
+                
+                <div class="form-section">
+                    <h3>Record Student Grade</h3>
+                    <form id="gradeForm" class="form">
+                        <div class="form-row">
+                            <select id="gradeStudent">
+                                <option value="">Select Student</option>
+                            </select>
+                            <select id="gradeSubject">
+                                <option value="">Select Subject</option>
+                            </select>
+                            <input type="text" id="gradeExamType" placeholder="Exam Type (e.g., Midterm)">
+                        </div>
+                        <div class="form-row">
+                            <input type="number" id="gradeMarks" placeholder="Marks Obtained" step="0.01" required>
+                            <input type="number" id="gradeTotalMarks" placeholder="Total Marks" step="0.01" value="100">
+                            <input type="text" id="gradeTerm" placeholder="Term (e.g., Term 1)">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Record Grade</button>
+                    </form>
+                </div>
+
+                <div class="table-section">
+                    <h3>Grades List</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Subject</th>
+                                <th>Exam Type</th>
+                                <th>Marks</th>
+                                <th>Percentage</th>
+                                <th>Grade</th>
+                                <th>Term</th>
+                            </tr>
+                        </thead>
+                        <tbody id="gradesList">
+                            <tr><td colspan="7">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Attendance Tab -->
+            <section id="attendance-tab" class="tab-content">
+                <h2>Attendance Management</h2>
+                
+                <div class="form-section">
+                    <h3>Mark Attendance</h3>
+                    <form id="attendanceForm" class="form">
+                        <div class="form-row">
+                            <select id="attendanceClass">
+                                <option value="">Select Class</option>
+                            </select>
+                            <input type="date" id="attendanceDate" required>
+                        </div>
+                        <div id="attendanceList" class="attendance-list">
+                            <p>Select class and date to mark attendance</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Attendance</button>
+                    </form>
+                </div>
+
+                <div class="table-section">
+                    <h3>Attendance Records</h3>
+                    <div class="form-row">
+                        <input type="date" id="attendanceFilterDate">
+                        <button class="btn btn-secondary" onclick="filterAttendance()">Filter</button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Class</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendanceRecordsList">
+                            <tr><td colspan="5">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Fees Tab -->
+            <section id="fees-tab" class="tab-content">
+                <h2>Fee Management</h2>
+                
+                <div class="form-section">
+                    <h3>Add Fee Record</h3>
+                    <form id="feeForm" class="form">
+                        <div class="form-row">
+                            <select id="feeStudent">
+                                <option value="">Select Student</option>
+                            </select>
+                            <input type="number" id="feeAmount" placeholder="Amount" step="0.01" required>
+                            <select id="feeMonth">
+                                <option value="">Select Month</option>
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <input type="number" id="feeYear" placeholder="Year" value="2024">
+                            <select id="feeStatus">
+                                <option value="pending">Pending</option>
+                                <option value="paid">Paid</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Fee Record</button>
+                    </form>
+                </div>
+
+                <div class="table-section">
+                    <h3>Fee Records</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Amount</th>
+                                <th>Month</th>
+                                <th>Year</th>
+                                <th>Status</th>
+                                <th>Paid Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="feesList">
+                            <tr><td colspan="7">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
